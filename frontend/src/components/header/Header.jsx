@@ -5,7 +5,14 @@ import { GiVote } from "react-icons/gi";
 
 function Header() {
     const handleLogout=()=>{
-        localStorage.removeItem('token')
+        const token = localStorage.getItem('token')
+        if(!token){
+            alert('already logout')
+        }
+        else{
+            alert('logout done')
+            localStorage.removeItem('token')
+        }
     }
     return (
         <div>
@@ -16,7 +23,7 @@ function Header() {
                 <NavLink to="/">HOME</NavLink>
             </button></li>
                     <li className=" text-black-500 hover:text-zinc-500 cursor-pointer"> <button>
-                <NavLink to="user/signup">VOTE</NavLink>
+                <NavLink to="user/votingpage">VOTE</NavLink>
             </button></li>
                     <li className=" text-black-500 hover:text-zinc-500 cursor-pointer"> <button>
                 <NavLink to="user/signup">REGISTER</NavLink>

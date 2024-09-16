@@ -23,7 +23,7 @@ const router=createBrowserRouter(
       <Route path ='user/signup' element={<Signup/>}/>
       <Route path ='user/profile'
       element={<Profile/>}/>
-      <Route path ='user/vote'
+      <Route path ='user/votingpage'
       element={<Votingpage/>}/>
       <Route path ='admin/addCandidate'
       element={<AddCandidate/>}/>

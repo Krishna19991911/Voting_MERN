@@ -35,7 +35,7 @@ const Profile = () => {
       <div>
         
         <p className="font-bold text-center">
-        {users? "Have a look on your Profile ...":"Please Login First"}
+        {users? "Have a look on your Profile ...":"Please Login to continue.."}
         </p>
         <div className="flex justify-center m-5">
         <table border="5" className="border border-gray-600 w-4/12 " style={{ textAlign: "left" }}>

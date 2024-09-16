@@ -56,8 +56,8 @@ setLoginData(prevState=>({
     <div className="flex font-bold mb-5 bg-blue-600 h-14 items-center justify-center rounded-md text-white">LOGIN</div> 
     <div>
         <form className="flex flex-col">
-<input type="text" placeholder="Aadhar Card Number" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={loginData.name} onChange={handleChange}></input>
-<input type="text" placeholder="Password" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={loginData.name} onChange={handleChange}></input>
+<input type="text" placeholder="Aadhar Card Number" name="aadharCardNumber" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={loginData.aadharCardNumber} onChange={handleChange}></input>
+<input type="text" placeholder="Password"  name="password" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={loginData.password} onChange={handleChange}></input>
 <div className="items-center">
 <button className="bg-orange-600 hover:bg-orange-400 text-white w-32 mt-3 rounded-xl h-12 mb-5 text-lg" onClick={handleLogin}>Login</button> </div>
         </form>
