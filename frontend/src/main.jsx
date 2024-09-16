@@ -23,7 +23,7 @@ const router=createBrowserRouter(
       <Route path ='user/signup' element={<Signup/>}/>
       <Route path ='user/profile'
       element={<Profile/>}/>
-      <Route path ='user/votingpage'
+      <Route path ='user/vote'
       element={<Votingpage/>}/>
       <Route path ='admin/addCandidate'
       element={<AddCandidate/>}/>
@@ -35,9 +35,6 @@ const router=createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <h1 className="text-3xl font-bold underline">
-      Hello world!!!!!
-    </h1>
-<RouterProvider router={router}/>
+<RouterProvider router={router} />
   </React.StrictMode>,
 )

@@ -9,10 +9,11 @@ router.post('/signup',async (req,res)=>{
         // Assuming the request body contains the person data
         const data = req.body;
      //   console.log(data.role)
-        const checkAdmin = await User.find({role:'admin'})
-      //  console.log(checkAdmin) 
-         if(checkAdmin && (data.role=='admin')){
+        const checkAdmin = await User.findOne({role:'admin'})
+      console.log(checkAdmin) 
+         if((checkAdmin) && (data.role=='admin')){
              console.log("Admin is already Existed")
+            // alert('Admin Already existed')
           return res.status(500).json({error:'Admin already existed'})
          }
         // Create a new user documnet using the mongoose model
@@ -67,6 +68,26 @@ router.post('/login',async(req,res)=>{
         res.status(500).json({Error:'Internal Server Error'})
     }
 })
+
+// Check user whether it is admin or voter
+router.get('/checkRole',jwtAuthMiddleware,async(req,res)=>{
+    try{
+    const userData = req.user;
+    const userId = userData.id;
+    const user = await User.findById(userId)
+    if(user.role=='admin')
+    res.status(200).json({role:'admin'})
+    else if(user.role=='voter') 
+    res.status(200).json({role:'voter'})
+    else
+    res.status(200).json({role:'unknown'})
+    }
+    catch(err){
+        
+        console.log(err)
+        res.status(500).json({Error:'Internal Token Errorrr'})
+    }
+    })
 
 // profile route(User can see his/her profile)
 router.get('/profile',jwtAuthMiddleware,async(req,res)=>{

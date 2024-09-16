@@ -36,11 +36,16 @@ function Signup(){
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData), // Convert form data to JSON
-            });
+            })
+            
+            const data = await response.json();
 
             if (response.ok) {
-                // const data = await response.json();
                 // console.log('Success:', data);
+                if(data.token){
+                    localStorage.setItem('token',data.token)
+                    console.log("Token saved")
+                }
                
                 // setFormData({
                 //     name: '',
@@ -73,22 +78,26 @@ function Signup(){
         }
     };
     return (
-        <div>
-            <h1>Signup Page</h1>
-            <form>
-                Name <input type="text" name="name" value={formData.name} onChange={handleChange}></input> <br/> <br/>
-                Age <input type="text" name="age" value={formData.age} onChange={handleChange}></input><br/> <br/>
-                Email <input type="email" name="email" value={formData.email} onChange={handleChange}></input><br/> <br/>
-                Address <input type="text" name="address" value={formData.address} onChange={handleChange}></input><br/> <br/>
-                AadharCardNumber <input type="text" name="aadharCardNumber" value={formData.aadharCardNumber} onChange={handleChange}></input><br/> <br/>
-                Password <input type="password" name="password" value={formData.password} onChange={handleChange}></input><br/> <br/>
-                Role (voter/admin) <input type="text" name="role" value={formData.role} onChange={handleChange}></input><br/> <br/>
-                <button onClick={handleSubmit}>Submit</button>
-                <button>
-                    
-                <NavLink to="/">Back to Home page</NavLink>
-                </button>
-            </form>
+        <div className="m-5">
+            <p className="font-bold text-center">Register With Us...</p>
+            <div className="flex justify-center items-center mt-5 ">
+            <div className="text-center w-3/12 border border-zinc-300 rounded-md h-auto snap-y ">
+                 <div className="flex font-bold mb-5 bg-blue-600 h-14 items-center justify-center rounded-md text-white">SIGN UP</div> 
+                 <div className="">
+                      <form className="flex flex-col ">
+                     <input type="text" placeholder="Name" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.name} onChange={handleChange}></input>
+                     <input type="text" placeholder="Age" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.age} onChange={handleChange}></input>
+                     <input type="text" placeholder="Address" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.address} onChange={handleChange}></input>
+                     <input type="text" placeholder="Aadhar Card Number" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.aadharCardNumber} onChange={handleChange}></input>
+                     <input type="text" placeholder="Password" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.password} onChange={handleChange}></input>
+                     <input type="text" placeholder="Role(admin/voter)" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.role} onChange={handleChange}></input>
+                  <div className="items-center">   <button className="bg-orange-600 hover:bg-orange-400 text-white w-32 mt-3 rounded-xl h-12 mb-5" onClick={handleSubmit}>Submit</button> </div>
+                
+                     </form></div>
+
+            </div> 
+            </div>
+            
         </div>
     )
 }

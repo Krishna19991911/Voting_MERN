@@ -3,6 +3,8 @@ import {NavLink} from 'react-router-dom'
 
 function Votingpage() {
     const [candidates,setCandidates] = useState([]);
+    const [ isAdmin,setIsAdmin] = useState(false)
+    const [user,setUser] = useState("")
 
     useEffect(()=>{
         const fetchCandidates = async()=>{
@@ -20,6 +22,37 @@ function Votingpage() {
         fetchCandidates()
     },[]);
 
+   useEffect(()=>{
+       const checkRole = async()=>{
+           try{
+               const token = localStorage.getItem('token')
+               
+               const response = await fetch('http://localhost:2005/user/checkRole',{
+                   method:'GET',
+                   headers:{
+                   'Content-type':'application/json',
+                   'Authorization':`Bearer ${token}`
+                   }
+               })
+               console.log(response)
+               const data = await response.json();
+               console.log(data)
+               if(data.role =='admin'){
+               setIsAdmin(true)
+               setUser("Admin")}
+               else{
+               setIsAdmin(false)
+               setUser("Voter")}
+           }catch(err){
+               console.log("error")
+               
+
+           }
+       }
+       checkRole()
+    },[])
+
+
     // handle votes
     const handleVote=async(e)=>{
         const candidateId=e.target.id;
@@ -32,14 +65,17 @@ function Votingpage() {
     }
     return (
         <div>
-            Welcome!! Userrr on the Voting page <br/> 
+            Welcome!! {user} on the Voting page <br/> 
             Have a Vote please <br/> <br/>
-           <button> <NavLink to="/admin/addCandidate">Add Candidate </NavLink></button>
+      {isAdmin?<button> <NavLink to="/admin/addCandidate">Add Candidate </NavLink></button>:""}
             <ul>
           {candidates.map((user) => (
             <li key={user._id}>
               {user.name} - {user.email} - {user.age} years old 
-              <button id={user._id} onClick={handleVote}> Vote</button>
+            {!isAdmin? <button id={user._id} onClick={handleVote}> Vote</button>: <>
+            <button id={user._id}> Edit </button>
+            <button id={user._id}> Delete </button> </>
+            }
             </li>
           ))}
         </ul>

@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap');
+p{
+    font-family: "Ribeye Marrow", serif;
+    font-weight: 8520;
+    font-style:normal;
+    font-size: 40px;
+}
