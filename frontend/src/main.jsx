@@ -13,6 +13,7 @@ import Signup from './components/signup/Signup'
 import Profile from './components/profile/Profile'
 import Votingpage from './components/votingpage/Votingpage'
 import AddCandidate from './components/addCandidate/AddCandidate'
+import {AuthProvider} from './components/contextAPI/AuthContext'
 
 
 const router=createBrowserRouter(
@@ -20,10 +21,10 @@ const router=createBrowserRouter(
     <Route path='/' element={<Layout/>}>
       <Route path ='' element={<Home/>}/>
       <Route path ='user/login' element={<Login/>}/>
-      <Route path ='user/signup' element={<Signup/>}/>
+      <Route path ='user/register' element={<Signup/>}/>
       <Route path ='user/profile'
       element={<Profile/>}/>
-      <Route path ='user/votingpage'
+      <Route path ='user/vote'
       element={<Votingpage/>}/>
       <Route path ='admin/addCandidate'
       element={<AddCandidate/>}/>
@@ -35,6 +36,8 @@ const router=createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <AuthProvider>
 <RouterProvider router={router} />
+</AuthProvider>
   </React.StrictMode>,
 )

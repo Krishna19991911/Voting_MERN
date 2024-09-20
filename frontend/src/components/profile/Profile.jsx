@@ -1,15 +1,18 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {useState,useEffect} from 'react'
+import {AuthContext} from '../contextAPI/AuthContext'
 
 const Profile = () => {
+  const {isLogin} = useContext(AuthContext)
     const [users, setUsers] = useState("");
   
+    
     useEffect(() => {
       // Fetch data from the backend
       const fetchUsers = async () => {
         try {
           const token = await  localStorage.getItem('token');
-          console.log(token)
+         
           const response = await fetch('http://localhost:2005/user/profile',{
             method:'GET',
             headers:{
@@ -20,9 +23,10 @@ const Profile = () => {
          // console.log(response)
           const data = await response.json();
       //   console.log(data)
-         console.log(data.user)
+       //  console.log(data.user)
          setUsers(data.user);
-          console.log(users)
+        
+         // console.log(users)
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -35,7 +39,7 @@ const Profile = () => {
       <div>
         
         <p className="font-bold text-center">
-        {users? "Have a look on your Profile ...":"Please Login to continue.."}
+        {isLogin? "Have a look on your Profile ...":"Please Login to continue.."}
         </p>
         <div className="flex justify-center m-5">
         <table border="5" className="border border-gray-600 w-4/12 " style={{ textAlign: "left" }}>

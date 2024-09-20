@@ -89,6 +89,7 @@ function Signup(){
                      <input type="text" placeholder="Age" name="age" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.age} onChange={handleChange}></input>
                      <input type="text" placeholder="Address" name="address" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.address} onChange={handleChange}></input>
                      <input type="text" placeholder="Aadhar Card Number" name="aadharCardNumber" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.aadharCardNumber} onChange={handleChange}></input>
+                     <input type="text" placeholder="Email Id" name="email" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.email} onChange={handleChange}></input>
                      <input type="text" placeholder="Password" name="password" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.password} onChange={handleChange}></input>
                      <input type="text" placeholder="Role(admin/voter)" name="role" className="m-4 h-8 border border-slate-300 rounded-md p-4" value={formData.role} onChange={handleChange}></input>
                   <div className="items-center">   <button className="bg-orange-600 hover:bg-orange-400 text-white w-32 mt-3 rounded-xl h-12 mb-5" onClick={handleSubmit}>Submit</button> </div>
